@@ -24,7 +24,7 @@ set_threads = 'null'
 
 colorama.init()
 
-os.system('cls')
+os.system('cls' if os.name == 'nt' else 'clear')
 
 main = [
 	f'''{Fore.YELLOW}
