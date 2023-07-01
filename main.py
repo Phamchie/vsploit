@@ -27,6 +27,26 @@ colorama.init()
 os.system('cls')
 
 main = [
+	f'''{Fore.YELLOW}
+ _          _       _            _          _             _             _        _       
+/\ \    _ / /\     / /\         /\ \       _\ \          /\ \          /\ \     /\ \     
+\ \ \  /_/ / /    / /  \       /  \ \     /\__ \        /  \ \         \ \ \    \_\ \    
+ \ \ \ \___\/    / / /\ \__   / /\ \ \   / /_ \_\      / /\ \ \        /\ \_\   /\__ \   
+ / / /  \ \ \   / / /\ \___\ / / /\ \_\ / / /\/_/     / / /\ \ \      / /\/_/  / /_ \ \  
+ \ \ \   \_\ \  \ \ \ \/___// / /_/ / // / /         / / /  \ \_\    / / /    / / /\ \ \ 
+  \ \ \  / / /   \ \ \     / / /__\/ // / /         / / /   / / /   / / /    / / /  \/_/ 
+   \ \ \/ / /_    \ \ \   / / /_____// / / ____    / / /   / / /   / / /    / / /        
+    \ \ \/ //_/\__/ / /  / / /      / /_/_/ ___/\ / / /___/ / /___/ / /__  / / /         
+     \ \  / \ \/___/ /  / / /      /_______/\__\// / /____\/ //\__\/_/___\/_/ /          
+      \_\/   \_____\/   \/_/       \_______\/    \/_________/ \/_________/\_\/ 
+      {Style.RESET_ALL}
+  ---------[ vSploit : Copyright Pham Chien ]--------
+  ---------[ 10 module haacking attack      ]--------
+  ---------[ Twitter : @Anonym0us_VNPC      ]--------
+  ---------[ Telegram : t.me/Anon0psNews    ]-------- 
+                                                                                  
+  ''',
+
 	f'''{Fore.GREEN}
         _________      .__         .__  __   
 ___  __/   _____/_____ |  |   ____ |__|/  |_ 
@@ -34,12 +54,12 @@ ___  __/   _____/_____ |  |   ____ |__|/  |_
  \   / /        \  |_> >  |_(  <_> )  ||  |  
   \_/ /_______  /   __/|____/\____/|__||__|  
               \/|__|   
-
+ {Style.RESET_ALL}
   ---------[ vSploit : Copyright Pham Chien ]--------
   ---------[ 10 module haacking attack      ]--------
   ---------[ Twitter : @Anonym0us_VNPC      ]--------
   ---------[ Telegram : t.me/Anon0psNews    ]-------- 
-  {Style.RESET_ALL}''',
+ ''',
 
   f'''{Fore.BLUE} 
         (                            
@@ -51,12 +71,12 @@ ___  __/   _____/_____ |  |   ____ |__|/  |_
  \ V / \__ \| '_ \)| |/ _ \| ||  _|  
   \_/  |___/| .__/ |_|\___/|_| \__|  
             |_|              
-
+{Style.RESET_ALL}
   ---------[ vSploit : Copyright Pham Chien ]--------
   ---------[ 10 module haacking attack      ]--------
   ---------[ Twitter : @Anonym0us_VNPC      ]--------
   ---------[ Telegram : t.me/Anon0psNews    ]--------
- {Style.RESET_ALL}''',
+ ''',
 
  	f'''{Fore.RED}
            ___     _ __     _               _      _     
@@ -65,12 +85,12 @@ ___  __/   _____/_____ |  |   ____ |__|/  |_
   _\_/_   |___/   |_|__   _|_|_   \___/   _|_|_   _\__|  
 _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""| 
 "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
-
+{Style.RESET_ALL}
   ---------[ vSploit : Copyright Pham Chien ]--------
   ---------[ 10 module haacking attack      ]--------
   ---------[ Twitter : @Anonym0us_VNPC      ]--------
   ---------[ Telegram : t.me/Anon0psNews    ]--------
-{Style.RESET_ALL}''',
+''',
 
 ]
 
@@ -126,7 +146,7 @@ scanner_portscan_tcp       Checking Port
 		if set_module == 'reverse_tcp_backdoor':
 			
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 			while True:
@@ -282,7 +302,7 @@ connection()
 		elif set_module == 'http_flood':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 
@@ -370,10 +390,13 @@ connection()
 					elif back_main == "n":
 						os.system('py main.py' if os.name == 'nt' else 'python3 main.py')
 
+# =========================================================================================
+
+
 		elif set_module == 'http_dos_attack':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 
@@ -466,10 +489,13 @@ connection()
 						os.system('py main.py' if os.name == 'nt' else 'python3 main.py')
 
 
+# ==================================================================================
+
+
 		elif set_module == 'http_tcp_dos':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 
@@ -571,10 +597,13 @@ connection()
 					for t in threads:
 						t.join()
 
+# =====================================================================================
+
+
 		elif set_module == 'reverse_ftpd_crack':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 
@@ -691,10 +720,14 @@ connection()
 					else:
 					  print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' port 21 not open')
 
+
+# =====================================================================================
+
+
 		elif set_module == 'sqli_scan':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 
@@ -754,24 +787,33 @@ connection()
 						'/search.php?q=%27',
 						'/search.php?query=%27',
 						'/search.php?test=%27',
+						'/index.php?id=%27',
+						'/product.php?id=%27',
+						'/product_detail.php?id=%27',
+						'/search.php?q=%27',
+						'/search.php?query=%27',
+						'/search.php?test=%27',
 					]
 
 					for payloads in payload:
 						def check():
 							response = requests.get(URL + payloads)
 							if "Warning: mysql_" in response.text:
-								print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' {url}{payloads} : Vulnerable SQLI')
+								print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' {set_url}{payloads} : Vulnerable SQLI')
 							elif "on line" in response.text:
-								print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {url}{payloads} : Vulnerable SQLI')
+								print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {set_url}{payloads} : Vulnerable SQLI')
 							else:
-								print(Fore.RED + '[*]' + Style.RESET_ALL + f' {url}{payloads} : Not Vulnerable')
+								print(Fore.RED + '[*]' + Style.RESET_ALL + f' {set_url}{payloads} : Not Vulnerable')
 
 						check()
+
+# =====================================================================================
+
 
 		elif set_module == 'xss_scan':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 
@@ -831,24 +873,32 @@ connection()
 						'/search.php?q=%27<h1>Checked XSS By vSploit</h1>',
 						'/search.php?query=%27<h1>Checked XSS By vSploit</h1>',
 						'/search.php?test=%27<h1>Checked XSS By vSploit</h1>',
+						'/index.php?id=%27=<h1>Checked XSS By vSploit</h1>',
+						'/product.php?id=%27<h1>Checked XSS By vSploit</h1>',
+						'/product_detail.php?id=%27<h1>Checked XSS By vSploit</h1>',
+						'/search.php?q=%27<h1>Checked XSS By vSploit</h1>',
+						'/search.php?query=%27<h1>Checked XSS By vSploit</h1>',
+						'/search.php?test=%27<h1>Checked XSS By vSploit</h1>',
 					]
 
 					for payloads in payload:
 						def check():
 							response = requests.get(URL + payloads)
 							if "Checked XSS By vSploit" in response.text:
-								print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {url}{payloads} : Vulnerable XSS')
+								print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {set_url}{payloads} : Vulnerable XSS')
 							else:
-								print(Fore.RED + '[*]' + Style.RESET_ALL + f' {url}{payloads} : Not Vulnerable')
+								print(Fore.RED + '[*]' + Style.RESET_ALL + f' {set_url}{payloads} : Not Vulnerable')
 
 						check()
 
+
+# =====================================================================================
 
 
 		elif set_module == 'reverse_http_enum':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 
@@ -910,6 +960,26 @@ connection()
 						'/webadmin.php',
 						'/login',
 						'/login.php',
+						'/doc',
+						'/docs',
+						'/documentation',
+						'/xsl',
+						'/wwhelp',
+						'/exchange',
+						'/content',
+						'/_vti_bin',
+						'/Desktop',
+						'/DragonSkin',
+						'/EditTablePlugin',
+						'/FileAttachment',
+						'/Laptop',
+						'/Main',
+						'/PatternSkin',
+						'/PatternSkinCss',
+						'/PatternSkinCustomization',
+						'/PatternSkinPalette',
+						'/PlainSkin',
+						'/Plugins',
 					]
 
 					for payloads in payload:
@@ -923,11 +993,15 @@ connection()
 								print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {payloads} found folders')
 						else:
 							print(Fore.RED + '[*]' + Style.RESET_ALL + f' {payloads} not found folders')
-						
+
+
+# =====================================================================================
+
+
 		elif set_module == 'scanner_portscan_tcp':
 
 			print("")
-			print(Fore.RED + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
 			print("")
 
 			session = True
@@ -988,3 +1062,8 @@ connection()
 
 						if code == 0:
 							print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' {URL}:{port_tcp} - TCP OPEN PORT')
+		else:
+			print("")
+			print(Fore.RED + '[*]' + Style.RESET_ALL + f' valid modules input')
+			print("")
+			break
