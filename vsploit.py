@@ -25,7 +25,7 @@ set_threads = 'null'
 
 colorama.init()
 
-os.system('cls' if os.name == 'nt' else 'clear')
+os.system('cls')
 
 main = [
 	f'''{Fore.YELLOW}
@@ -363,7 +363,7 @@ connection()
 					PORT = int(port_ip)
 
 					def listening():
-						for i in range(2):
+						for i in range(3):
 							s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 							s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 100)
 							s.bind((HOST, PORT))
@@ -374,17 +374,24 @@ connection()
 							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' http://{HOST}:{PORT} listening...')
 							
 							conn, addr = s.accept()
-							
+
+							response = '''HTTP/1.1 200 OK\r\n\r\nGood Morning\n
+today , i want send to you message , you have been hacked by VSploit, ahahhahaha !!!'''
+							conn.sendall(response.encode())
+
 							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' 1 {addr} has open the link...')
 							time.sleep(2)
 
-							output_data = conn.recv(1024)
+							output_data = conn.recv(1024).decode()
 
 							print("")
 							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {output_data}')
 							print("")
 
+							conn.close()
+
 							session = True
+
 						print("")
 						print("[+] Session CLosed")
 						print("")
