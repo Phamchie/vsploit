@@ -22,6 +22,7 @@ set_host = 'null'
 set_port = 'null'
 set_data = 'null'
 set_threads = 'null'
+data = 'null'
 
 colorama.init()
 
@@ -351,6 +352,7 @@ connection()
    HOST       :  {host_ip}       
    PORT       :  {port_ip}
    URL        :  http://{host_ip}:{port_ip}/
+   DATA       :  {data}
    PAYLOAD    :  {set_module}
 -----------------------------------------------
 ''')
@@ -402,7 +404,9 @@ connection()
 
 						print("[+] Session CLosed")
 						print("")
-						
+
+						data = f'{output_data}'
+
 					listening()
 
 # =========================================================================================
