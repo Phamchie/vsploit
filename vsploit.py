@@ -25,7 +25,8 @@ set_threads = 'null'
 
 colorama.init()
 
-os.system('cls' if os.name == 'nt' else 'clear')
+print(Fore.BLUE + '[*]' + Style.RESET_ALL + f" Starting VmSploitf")
+time.sleep(5)
 
 main = [
 	f'''{Fore.YELLOW}
