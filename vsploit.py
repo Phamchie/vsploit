@@ -26,7 +26,8 @@ data = 'null'
 
 colorama.init()
 
-os.system('cls')
+print(Fore.BLUE + '[*]' + Style.RESET_ALL + f" Starting VSPLOIT v1.3")
+time.sleep(5)
 
 main = [
 	f'''{Fore.YELLOW}
@@ -112,7 +113,7 @@ while True:
    MODULE                          OPTIONS
 ------------------------------------------------
 reverse_tcp_backdoor       created Backdoor File
-reverse_phishing_tcp       created link phishing cookie
+reverse_phishing_tcp       created server phishing
 http_flood                 HTTP FLood Attack (DoS)
 http_dos_attack            DoS Attack
 http_tcp_dos               DoS Layer4 (TCP)
