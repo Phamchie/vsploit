@@ -367,8 +367,8 @@ connection()
 
 					os.system('cls' if os.name == 'nt' else 'clear')
 
-					IP = str(input('HOST NAME : '))
-					PORT = int(input("PORT : "))
+					IP = str(f'{host_ip}')
+					PORT = int(port_ip)
 
 					HOSTING_NAME = f'http://{IP}:{PORT}/'
 
